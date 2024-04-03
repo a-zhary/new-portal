@@ -29,20 +29,19 @@
 
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h4>{{ __('Login') }}</h4>
+                            <h4>{{ __('Reset password') }}</h4>
                         </div>
 
                         <div class="card-body">
-                            @session('success')
-                                <i><b style="color: green">{{ $value }}</b></i>
-                            @endsession
-                            <form method="POST" action="" class="needs-validation"
+                            <form method="POST" action="{{ route('admin.reset-password.send') }}" class="needs-validation"
                                   novalidate="">
                                 @csrf
                                 <div class="form-group">
                                     <label for="email">Email</label>
                                     <input id="email" type="email" class="form-control" name="email" tabindex="1"
-                                           required autofocus>
+                                           required autofocus value="{{ request()->email }}">
+                                    <input id="token" type="hidden" class="form-control" name="token" tabindex="1"
+                                           required autofocus value="{{ $token }}">
                                     @error('email')
                                     <code>{{ $message }}</code>
                                     @enderror
@@ -52,34 +51,29 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <div class="d-block">
-                                        <label for="password" class="control-label">Password</label>
-                                        <div class="float-right">
-                                            <a href="{{ route('admin.forgot-password') }}" class="text-small">
-                                                Forgot Password?
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <input id="password" type="password" class="form-control" name="password"
-                                           tabindex="2" required>
+                                    <label for="password">Password</label>
+                                    <input id="password" type="password" class="form-control" name="password" tabindex="1"
+                                           required autofocus>
                                     @error('password')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
+                                    <code>{{ $message }}</code>
                                     @enderror
+                                    <div class="invalid-feedback">
+                                        Please fill in your password
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="remember" class="custom-control-input" tabindex="3"
-                                               id="remember-me">
-                                        <label class="custom-control-label" for="remember-me">Remember Me</label>
+                                    <label for="password">Confirmation Password</label>
+                                    <input id="password" type="password" class="form-control" name="password_confirmation" tabindex="1"
+                                           required autofocus>
+                                    <div class="invalid-feedback">
+                                        Please fill in your confirmation password
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                        Login
+                                        {{ __('Save') }}
                                     </button>
                                 </div>
                             </form>

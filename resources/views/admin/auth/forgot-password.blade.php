@@ -29,14 +29,15 @@
 
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h4>{{ __('Login') }}</h4>
+                            <h4>{{ __('Forgot password') }}</h4>
                         </div>
 
                         <div class="card-body">
+                            <p style="color: green">{{ __('Forgot your password? No problem. We got you.') }}</p>
                             @session('success')
-                                <i><b style="color: green">{{ $value }}</b></i>
+                                <i><b>{{ session()->get('success') }}</b></i>
                             @endsession
-                            <form method="POST" action="" class="needs-validation"
+                            <form method="POST" action="{{ route('admin.forgot-password.send') }}" class="needs-validation"
                                   novalidate="">
                                 @csrf
                                 <div class="form-group">
@@ -52,34 +53,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <div class="d-block">
-                                        <label for="password" class="control-label">Password</label>
-                                        <div class="float-right">
-                                            <a href="{{ route('admin.forgot-password') }}" class="text-small">
-                                                Forgot Password?
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <input id="password" type="password" class="form-control" name="password"
-                                           tabindex="2" required>
-                                    @error('password')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="remember" class="custom-control-input" tabindex="3"
-                                               id="remember-me">
-                                        <label class="custom-control-label" for="remember-me">Remember Me</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                        Login
+                                        {{ __('Send link') }}
                                     </button>
                                 </div>
                             </form>
