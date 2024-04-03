@@ -20,5 +20,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['admin']], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+    Route::put('profile-password- update/{id}', [ProfileController::class, 'passwordUpdate'])->name('profile-password.update');
     Route::resource('profile', ProfileController::class);
 });

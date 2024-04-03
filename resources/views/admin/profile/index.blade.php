@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="section-body">
-            <h2 class="section-title">{{ $user->name }}</h2>
+            <h2 class="section-title">{{ __('Hi') }}, {{ $user->name }}</h2>
             <p class="section-lead">
                 {{ __('Change information about yourself on this page') }}.
             </p>
@@ -28,9 +28,6 @@
                                 <h4>{{ __('Edit Profile') }}</h4>
                             </div>
                             <div class="card-body">
-                                @session('success')
-                                    <p class="text-success">{{ $value }}</p>
-                                @endsession
                                 <div class="form-group col-12">
                                     <div id="image-preview" class="image-preview">
                                         <label for="image-upload" id="image-label">{{ __('Choose File') }}</label>
@@ -63,7 +60,7 @@
                                 </div>
                             </div>
                             <div class="card-footer text-right">
-                                <button class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary">
                                     {{ __('Save Changes') }}
                                 </button>
                             </div>
@@ -72,35 +69,46 @@
                 </div>
                 <div class="col-12 col-md-12 col-lg-6">
                     <div class="card">
-                        <form method="post" class="needs-validation" novalidate="">
+                        <form action="{{ route('admin.profile-password.update', $user->id) }}" method="post" class="needs-validation" novalidate="">
+                            @csrf
+                            @method('PUT')
                             <div class="card-header">
                                 <h4>{{ __('Update password') }}</h4>
                             </div>
                             <div class="card-body">
                                 <div class="form-group col-12">
                                     <label>{{ __('Old Password') }}</label>
-                                    <input type="text" class="form-control" value="" required="">
+                                    <input name="current_password" type="password" class="form-control" required="">
+                                    @error('current_password')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                     <div class="invalid-feedback">
-                                        {{ __('Please fill in the name') }}
+                                        {{ __('Please fill in the old password') }}
                                     </div>
                                 </div>
                                 <div class="form-group col-12">
                                     <label>{{ __('New Password') }}</label>
-                                    <input type="text" class="form-control" value="" required="">
+                                    <input name="password" type="password" class="form-control" required="">
+                                    @error('password')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                     <div class="invalid-feedback">
-                                        {{ __('Please fill in the name') }}
+                                        {{ __('Please fill in the new password') }}
                                     </div>
                                 </div>
                                 <div class="form-group col-12">
                                     <label>{{ __('Confirmed Password') }}</label>
-                                    <input type="email" class="form-control" value="" required="">
+                                    <input name="password_confirmation" type="password" class="form-control" required="">
+                                    @error('password_confirmation')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                     <div class="invalid-feedback">
-                                        {{ __('Please fill in the email') }}
+                                        {{ __('Please fill in the password confirmation') }}
                                     </div>
                                 </div>
                             </div>
                             <div class="card-footer text-right">
-                                <button class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary">
                                     {{ __('Save Changes') }}
                                 </button>
                             </div>
