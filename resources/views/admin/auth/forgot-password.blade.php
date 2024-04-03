@@ -41,14 +41,14 @@
                                   novalidate="">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="email">Email</label>
+                                    <label for="email">{{ __('Email') }}</label>
                                     <input id="email" type="email" class="form-control" name="email" tabindex="1"
                                            required autofocus>
                                     @error('email')
                                     <code>{{ $message }}</code>
                                     @enderror
                                     <div class="invalid-feedback">
-                                        Please fill in your email
+                                        {{ __('Please fill in your email') }}
                                     </div>
                                 </div>
 
@@ -60,11 +60,8 @@
                             </form>
                         </div>
                     </div>
-                    <div class="mt-5 text-muted text-center">
-                        Don't have an account? <a href="auth-register.html">Create One</a>
-                    </div>
                     <div class="simple-footer">
-                        Copyright &copy <a href="aThemix.ru" target="_blank">aThemix.ru</a> {{ date('Y') }}
+                        {{ __('Copyright') }} &copy <a href="https://aThemix.ru" target="_blank">{{ __('aThemix.ru') }}</a> {{ date('Y') }}
                     </div>
                 </div>
             </div>

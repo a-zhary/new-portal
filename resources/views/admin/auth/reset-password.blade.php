@@ -37,7 +37,7 @@
                                   novalidate="">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="email">Email</label>
+                                    <label for="email">{{ __('Email') }}</label>
                                     <input id="email" type="email" class="form-control" name="email" tabindex="1"
                                            required autofocus value="{{ request()->email }}">
                                     <input id="token" type="hidden" class="form-control" name="token" tabindex="1"
@@ -46,28 +46,28 @@
                                     <code>{{ $message }}</code>
                                     @enderror
                                     <div class="invalid-feedback">
-                                        Please fill in your email
+                                        {{ __('Please fill in your email') }}
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="password">Password</label>
+                                    <label for="password">{{ __('Password') }}</label>
                                     <input id="password" type="password" class="form-control" name="password" tabindex="1"
                                            required autofocus>
                                     @error('password')
                                     <code>{{ $message }}</code>
                                     @enderror
                                     <div class="invalid-feedback">
-                                        Please fill in your password
+                                        {{ __('Please fill in your password') }}
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="password">Confirmation Password</label>
+                                    <label for="password">{{ __('Confirmation Password') }}</label>
                                     <input id="password" type="password" class="form-control" name="password_confirmation" tabindex="1"
                                            required autofocus>
                                     <div class="invalid-feedback">
-                                        Please fill in your confirmation password
+                                        {{ __('Please fill in your confirmation password') }}
                                     </div>
                                 </div>
 
@@ -79,11 +79,9 @@
                             </form>
                         </div>
                     </div>
-                    <div class="mt-5 text-muted text-center">
-                        Don't have an account? <a href="auth-register.html">Create One</a>
-                    </div>
+
                     <div class="simple-footer">
-                        Copyright &copy <a href="aThemix.ru" target="_blank">aThemix.ru</a> {{ date('Y') }}
+                        {{ __('Copyright') }} &copy <a href="https://aThemix.ru" target="_blank">{{ __('aThemix.ru') }}</a> {{ date('Y') }}
                     </div>
                 </div>
             </div>
