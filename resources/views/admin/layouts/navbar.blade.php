@@ -9,7 +9,7 @@
                 <div class="dropdown-title">
                     Logged in 5 min ago
                 </div>
-                <a href="features-profile.html" class="dropdown-item has-icon">
+                <a href="{{ route('admin.profile.index') }}" class="dropdown-item has-icon">
                     <i class="far fa-user"></i>
                     Profile
                 </a>
