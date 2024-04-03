@@ -15,14 +15,14 @@ trait FileUploader
         string $dir = 'uploads',
     ): ?string
     {
-        /* Delete the existing image */
-        if ($oldPath && File::exists(public_path($oldPath))) {
-            File::delete(public_path($oldPath));
-        }
-
         /* Check request has file */
         if (!$request->hasFile($fileName)) {
             return null;
+        }
+
+        /* Delete the existing image */
+        if ($oldPath && File::exists(public_path($oldPath))) {
+            File::delete(public_path($oldPath));
         }
 
         $file = $request->file($fileName);
@@ -31,8 +31,6 @@ trait FileUploader
 
         $file->move(public_path($dir), $updatedFileName);
 
-        $filePath = $dir.'/'.$updatedFileName;
-
-        return $filePath;
+        return $dir.'/'.$updatedFileName;
     }
 }

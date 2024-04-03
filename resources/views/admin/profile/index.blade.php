@@ -28,6 +28,9 @@
                                 <h4>{{ __('Edit Profile') }}</h4>
                             </div>
                             <div class="card-body">
+                                @session('success')
+                                    <p class="text-success">{{ $value }}</p>
+                                @endsession
                                 <div class="form-group col-12">
                                     <div id="image-preview" class="image-preview">
                                         <label for="image-upload" id="image-label">{{ __('Choose File') }}</label>
@@ -108,3 +111,15 @@
         </div>
     </section>
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function () {
+            $('.image-preview').css({
+                'background-image': 'url({{ asset($user->image) }})',
+                'background-size': 'cover',
+                'background-position': 'center'
+            })
+        })
+    </script>
+@endpush
