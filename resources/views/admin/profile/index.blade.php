@@ -32,6 +32,7 @@
                                     <div id="image-preview" class="image-preview">
                                         <label for="image-upload" id="image-label">{{ __('Choose File') }}</label>
                                         <input type="file" name="image" id="image-upload"/>
+                                        <input type="hidden" name="old_image" value="{{ $user->image }}"/>
                                     </div>
                                     @error('image')
                                     <p class="text-danger">{{ $message }}</p>
@@ -50,9 +51,12 @@
                                 <div class="form-group col-12">
                                     <label>{{ __('Email') }}</label>
                                     <input type="email" name="email" class="form-control" value="{{ $user->email }}" required="">
-                                    <div class="text-danger">
+                                    <div class="invalid-feedback">
                                         {{ __('Please fill in the email') }}
                                     </div>
+                                    @error('email')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="card-footer text-right">
